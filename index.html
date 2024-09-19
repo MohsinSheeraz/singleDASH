@@ -1160,13 +1160,17 @@
       data.forEach((item) => {
         const row = document.createElement("tr");
         row.innerHTML = `
-                <td class="border-b border-gray-300 p-2">${item.productName}</td>
-                <td class="border-b border-gray-300 p-2">${item.quantity}</td>
-                <td class="border-b border-gray-300 p-2">${item.price}</td>
-                <td class="border-b border-gray-300 p-2">${item.category}</td>
-                <td class="border-b border-gray-300 p-2">${item.supplier}</td>
-                <td class="border-b border-gray-300 p-2">${item.status}</td>
-            `;
+            <td class="border-b border-gray-300 p-2">
+                <a href="https://example.com/product/${item.productName}" target="_blank" class="text-blue-500 hover:underline">
+                    ${item.productName}
+                </a>
+            </td>
+            <td class="border-b border-gray-300 p-2">${item.quantity}</td>
+            <td class="border-b border-gray-300 p-2">${item.price}</td>
+            <td class="border-b border-gray-300 p-2">${item.category}</td>
+            <td class="border-b border-gray-300 p-2">${item.supplier}</td>
+            <td class="border-b border-gray-300 p-2">${item.status}</td>
+        `;
         tableBody.appendChild(row);
       });
     }
