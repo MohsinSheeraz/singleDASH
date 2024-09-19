@@ -61,11 +61,15 @@
     .dropdown.show {
       display: block;
     }
+    #data-table-body tr:hover{
+      background: #dbeafe;
+      cursor: pointer;
+    }
   </style>
   <body>
     <!-- Header Start -->
     <div
-      class="h-20 lg:h-24 w-full border border-gray-200 flex items-center justify-between lg:justify-normal lg:px-0 px-5"
+      class="h-20 lg:h-24 w-full border bgbl border-gray-200 flex items-center justify-between lg:justify-normal lg:px-0 px-5"
     >
       <div
         class="lg:px-2 w-full lg:w-1/5 text-2xl lg:text-5xl font-extrabold h-full flex justify-start lg:justify-center items-center border-0 lg:border border-gray-200 border-l-0 border-b-0 border-t-0 border-r-gray-200"
@@ -303,6 +307,7 @@
               <div class="flex-grow mx-1 gap-x-2">
                 <div class="relative">
                   <input
+                  id="search-input"
                     type="text"
                     placeholder="Search by Member ID, Member Last Name, PCP Last Name, Group Name"
                     class="w-full pl-3 pr-10 py-2 border-2 border-gray-200 focus:outline-none focus:border-blue-500 transition-colors rounded-md lg:rounded-none"
@@ -961,6 +966,43 @@
                 <td class="border-b border-gray-300 p-2">${item.status}</td>
             `;
             tableBody.appendChild(row);
+        });
+        const searchInput = document.getElementById('search-input');
+
+        // Function to populate the table
+        function populateTable(data) {
+            tableBody.innerHTML = ''; // Clear existing rows
+            data.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="border-b border-gray-300 p-2">${item.productName}</td>
+                    <td class="border-b border-gray-300 p-2">${item.quantity}</td>
+                    <td class="border-b border-gray-300 p-2">${item.price}</td>
+                    <td class="border-b border-gray-300 p-2">${item.category}</td>
+                    <td class="border-b border-gray-300 p-2">${item.supplier}</td>
+                    <td class="border-b border-gray-300 p-2">${item.status}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Initial population of the table
+        populateTable(jsonData);
+
+        // Function to filter the table based on search input
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            const filteredData = jsonData.filter(item => {
+                return (
+                    item.productName.toLowerCase().includes(query) ||
+                    item.quantity.toString().includes(query) ||
+                    item.price.toLowerCase().includes(query) ||
+                    item.category.toLowerCase().includes(query) ||
+                    item.supplier.toLowerCase().includes(query) ||
+                    item.status.toLowerCase().includes(query)
+                );
+            });
+            populateTable(filteredData);
         });
   </script>
 </html>
