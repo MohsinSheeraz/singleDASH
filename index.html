@@ -65,6 +65,22 @@
       background: #dbeafe;
       cursor: pointer;
     }
+    .sidebar {
+      width: 80px; /* Default collapsed width */
+      transition: width 0.5s ease; /* Smooth transition */
+    }
+
+    .sidebar.expanded {
+      width: 13%; /* Expanded width */
+    }
+
+    .sidebar .text {
+      transition: opacity 0.5s ease; /* Optional: for smoother text appearance */
+    }
+    #sidebar-container-with-content {
+      transition: transform 0.3s ease;
+      background-image: linear-gradient(to top, #30cfd0 0%, #0c5688 100%);
+    }
   </style>
   <body>
     <!-- Header Start -->
@@ -139,8 +155,6 @@
       <div class="block lg:hidden p-4">
         <i class="fas fa-bars text-2xl cursor-pointer" id="menu-toggle"></i>
       </div>
-
-      <!-- Sidebar -->
       <div
         id="sidebar"
         class="fixed inset-0 z-40 bg-gray-800 bg-opacity-75 flex justify-end lg:hidden"
@@ -200,47 +214,62 @@
     <!-- Sidebar End -->
     <div class="flex justify-normal items-start gap-0">
       <div
+        id="bigsidebar"
         class="hidden h-[calc(100vh-96px)] w-20 sidebar text-white lg:flex flex-col items-center py-4"
       >
-        <!-- Home Icon -->
-        <a href="#" class="mb-6 hover:text-gray-400">
+        <a href="#" class="mb-6 hover:text-gray-400 flex items-center">
           <i class="fa-solid fa-bell text-2xl"></i>
+          <span class="hidden text ml-2">This is Text</span>
         </a>
 
         <div class="flex flex-col bg-[#037aad] w-full items-center py-3 mb-2">
           <a
             href="#"
-            class="mb-6 bg-green-500 rounded-full p-3 hover:translate-x-5 transition hover:bg-green-400"
+            class="mb-6 bg-green-500 rounded-full p-3 hover:translate-x-5 transition hover:bg-green-400 flex items-center"
           >
             <i class="fa-solid fa-users text-3xl"></i>
+            <span class="hidden text ml-2">This is Text</span>
           </a>
 
-          <a href="#" class="mb-6 hover:text-gray-400">
+          <a href="#" class="mb-6 hover:text-gray-400 flex items-center">
             <i class="fa-solid fa-user-doctor text-2xl"></i>
+            <span class="hidden text ml-2">This is Text</span>
           </a>
 
-          <a href="#" class="mb-6 hover:text-gray-400">
+          <a href="#" class="mb-6 hover:text-gray-400 flex items-center">
             <i class="fa-duotone fa-solid fa-user-plus text-2xl"></i>
+            <span class="hidden text ml-2">This is Text</span>
           </a>
         </div>
-        <a href="#" class="mb-6 hover:text-gray-400">
+
+        <a href="#" class="mb-6 hover:text-gray-400 flex items-center">
           <i class="fa-solid fa-wrench text-2xl"></i>
-        </a>
-        <a href="#" class="mb-6 hover:text-gray-400">
-          <i class="fa-solid fa-chart-pie text-2xl"></i>
-        </a>
-        <a href="#" class="mb-6 hover:text-gray-400">
-          <i class="fa-solid fa-hands text-2xl"></i>
-        </a>
-        <a href="#" class="hover:text-gray-400">
-          <i class="fa-solid fa-paperclip text-2xl"></i>
+          <span class="hidden text ml-2">This is Text</span>
         </a>
 
-        <div class="absolute bottom-4">
-          <i class="fa-solid fa-arrow-right"></i>
-        </div>
+        <a href="#" class="mb-6 hover:text-gray-400 flex items-center">
+          <i class="fa-solid fa-chart-pie text-2xl"></i>
+          <span class="hidden text ml-2">This is Text</span>
+        </a>
+
+        <a href="#" class="mb-6 hover:text-gray-400 flex items-center">
+          <i class="fa-solid fa-hands text-2xl"></i>
+          <span class="hidden text ml-2">This is Text</span>
+        </a>
+
+        <a href="#" class="hover:text-gray-400 flex items-center">
+          <i class="fa-solid fa-paperclip text-2xl"></i>
+          <span class="hidden text ml-2">This is Text</span>
+        </a>
+        <i
+          id="toggle-sidebar"
+          class="fa-solid fa-arrow-right transition-transform duration-300 text-white absolute bottom-4 cursor-pointer text-2xl"
+        ></i>
       </div>
-      <div class="h-full w-full space-y-4">
+      <div
+        id="main-content"
+        class="h-full w-full space-y-4 transition-all duration-500"
+      >
         <div
           class="h-5 w-full bg-[#adaeb3] flex items-center gap-x-5 px-10 py-3 border-gray-700"
         >
@@ -248,6 +277,64 @@
           <i class="fa-solid fa-arrow-right" style="color: white"></i>
           <p class="text-sm text-white cursor-pointer">My Roster</p>
         </div>
+        <button
+          id="open-sidebar-button"
+          class="p-2 bg-blue-500 text-white rounded block lg:hidden mx-5"
+        >
+          Open Sidebar
+        </button>
+
+        <div
+          id="sidebar-container-with-content"
+          class="z-20 fixed left-0 -top-5 h-full w-80 bg-blue-700 text-white transition-transform duration-300 ease-in-out transform -translate-x-full lg:hidden flex flex-col justify-normal items-start"
+        >
+          <h2 class="text-xl font-bold p-5">Sidebar Content</h2>
+          <div>
+            <ul class="flex flex-col gap-y-5 p-5">
+              <li class="flex items-center gap-x-4">
+                <i class="fa-solid fa-bell text-2xl"></i>
+                <span>Options</span>
+              </li>
+              <li class="flex items-center gap-x-4">
+                <i class="fa-solid fa-users text-3xl -ml-1"></i>
+                <span>Options</span>
+              </li>
+              <li class="flex items-center gap-x-4">
+                <i class="fa-solid fa-user-doctor text-2xl"></i>
+                <span>Options</span>
+              </li>
+              <li class="flex items-center gap-x-4">
+                <i class="fa-duotone fa-solid fa-user-plus text-2xl"></i>
+                <span>Options</span>
+              </li>
+              <li class="flex items-center gap-x-4">
+                <i class="fa-solid fa-wrench text-2xl"></i>
+                <span>Options</span>
+              </li>
+              <li class="flex items-center gap-x-4">
+                <i class="fa-solid fa-chart-pie text-2xl"></i>
+                <span>Options</span>
+              </li>
+              <li class="flex items-center gap-x-4">
+                <i class="fa-solid fa-hands text-2xl"></i>
+                <span>Options</span>
+              </li>
+              <li class="flex items-center gap-x-4">
+                <i class="fa-solid fa-paperclip text-2xl"></i>
+                <span>Options</span>
+              </li>
+              <li>
+                <button
+                  id="close-sidebar-button"
+                  class="p-2 bg-red-500 text-white rounded"
+                >
+                  Close Sidebar
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+
         <div class="bg-[#e6e6e6] w-[98%] mx-auto">
           <div class="px-2 sm:px-4 lg:px-8">
             <div
@@ -1107,6 +1194,47 @@
     refreshButton.addEventListener("click", function () {
       searchInput.value = ""; // Clear the search input
       populateTable(jsonData); // Repopulate the table with all data
+    });
+
+    const bigsidebar = document.getElementById("bigsidebar");
+    const toggleButton = document.getElementById("toggle-sidebar");
+    let open = false;
+
+    toggleButton.addEventListener("click", function () {
+      open = !open;
+      if (open) {
+        bigsidebar.classList.remove("hidden");
+        bigsidebar.classList.add("expanded");
+        toggleButton.classList.remove("fa-arrow-right");
+        toggleButton.classList.add("fa-arrow-left"); // Change to left arrow
+
+        // Show text
+        const textElements = bigsidebar.querySelectorAll(".text");
+        textElements.forEach((el) => el.classList.remove("hidden"));
+      } else {
+        bigsidebar.classList.add("hidden");
+        bigsidebar.classList.remove("expanded");
+        toggleButton.classList.remove("fa-arrow-left");
+        toggleButton.classList.add("fa-arrow-right"); // Change back to right arrow
+
+        // Hide text
+        const textElements = bigsidebar.querySelectorAll(".text");
+        textElements.forEach((el) => el.classList.add("hidden"));
+      }
+    });
+
+    const openSidebarButton = document.getElementById("open-sidebar-button");
+    const closeSidebarButton = document.getElementById("close-sidebar-button");
+    const sidebarContainer = document.getElementById(
+      "sidebar-container-with-content"
+    );
+
+    openSidebarButton.addEventListener("click", function () {
+      sidebarContainer.classList.toggle("-translate-x-full"); // Slide in
+    });
+
+    closeSidebarButton.addEventListener("click", function () {
+      sidebarContainer.classList.add("-translate-x-full"); // Slide out
     });
   </script>
 </html>
