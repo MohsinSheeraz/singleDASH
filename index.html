@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
     <link
       href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
       rel="stylesheet"
@@ -15,6 +21,9 @@
     />
   </head>
   <style>
+    body {
+      font-family: "Quicksand", sans-serif;
+    }
     .sidebar {
       background-image: linear-gradient(to top, #30cfd0 0%, #0c5688 100%);
     }
@@ -39,18 +48,33 @@
       scrollbar-width: thin;
       scrollbar-color: #30cfd0 transparent;
     }
+    #sidebar {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+    #sidebar.show {
+      transform: translateX(0);
+    }
+    .dropdown {
+      display: none;
+    }
+    .dropdown.show {
+      display: block;
+    }
   </style>
   <body>
     <!-- Header Start -->
     <div
-      class="h-24 w-full border border-gray-200 flex items-center justify-normal"
+      class="h-20 lg:h-24 w-full border border-gray-200 flex items-center justify-between lg:justify-normal lg:px-0 px-5"
     >
       <div
-        class="w-1/5 text-3xl h-full flex justify-center items-center border border-gray-200 border-l-0 border-b-0 border-t-0 border-r-gray-200"
+        class="lg:px-2 w-full lg:w-1/5 text-2xl lg:text-5xl font-extrabold h-full flex justify-start lg:justify-center items-center border-0 lg:border border-gray-200 border-l-0 border-b-0 border-t-0 border-r-gray-200"
       >
         LOGO
       </div>
-      <div class="h-full w-full flex items-center justify-between px-5">
+      <div
+        class="hidden h-full w-full lg:flex items-center justify-between px-5"
+      >
         <div class="bg-white flex items-center space-x-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -107,11 +131,72 @@
           </div>
         </div>
       </div>
+      <!-- Mobile Navbar Start -->
+      <div class="block lg:hidden p-4">
+        <i class="fas fa-bars text-2xl cursor-pointer" id="menu-toggle"></i>
+      </div>
+
+      <!-- Sidebar -->
+      <div
+        id="sidebar"
+        class="fixed inset-0 z-40 bg-gray-800 bg-opacity-75 flex justify-end lg:hidden"
+      >
+        <div class="w-64 h-full bg-white p-5 shadow-lg">
+          <div class="flex justify-between items-center">
+            <h2 class="text-lg font-bold">Menu</h2>
+            <button id="close-sidebar" class="text-gray-700">
+              <i class="fas fa-times text-xl"></i>
+            </button>
+          </div>
+          <nav class="mt-12 flex flex-col items- h-full">
+            <ul class="space-y-4">
+              <li>
+                <div class="flex items-center justify-between gap-x-5 h-full">
+                  <i
+                    class="fas fa-user text-xl text-blue-500 hover:text-blue-700"
+                  ></i>
+                  <p
+                    class="text-blue-500 hover:text-blue-700 cursor-pointer text-sm font-medium"
+                  >
+                    Community
+                  </p>
+                </div>
+              </li>
+              <li>
+                <div class="flex items-center justify-between gap-x-5 h-full">
+                  <i
+                    class="fas fa-bell text-xl text-blue-500 hover:text-blue-700"
+                  ></i>
+                  <p
+                    class="text-blue-500 hover:text-blue-700 cursor-pointer text-sm font-medium"
+                  >
+                    Notifications
+                  </p>
+                </div>
+              </li>
+              <li>
+                <div class="flex items-center justify-between gap-x-5 h-full">
+                  <i
+                    class="fas fa-users text-xl text-blue-500 hover:text-blue-700 -ml-1"
+                  ></i>
+                  <p
+                    class="text-blue-500 hover:text-blue-700 cursor-pointer text-sm font-medium"
+                  >
+                    User Profile
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Mobile Navbar End -->
     </div>
-    <!-- Sidebar Start -->
+    <!-- Sidebar End -->
     <div class="flex justify-normal items-start gap-0">
       <div
-        class="h-[calc(100vh-96px)] w-20 sidebar text-white flex flex-col items-center py-4"
+        class="hidden h-[calc(100vh-96px)] w-20 sidebar text-white lg:flex flex-col items-center py-4"
       >
         <!-- Home Icon -->
         <a href="#" class="mb-6 hover:text-gray-400">
@@ -155,29 +240,72 @@
         <div
           class="h-5 w-full bg-[#adaeb3] flex items-center gap-x-5 px-10 py-3 border-gray-700"
         >
-          <p class="text-sm text-white">Dashboard</p>
+          <p class="text-sm text-white cursor-pointer">Dashboard</p>
           <i class="fa-solid fa-arrow-right" style="color: white"></i>
-          <p class="text-sm text-white">My Roster</p>
+          <p class="text-sm text-white cursor-pointer">My Roster</p>
         </div>
         <div class="bg-[#e6e6e6] w-[98%] mx-auto">
           <div class="px-2 sm:px-4 lg:px-8">
-            <div class="flex items-center justify-between h-16">
+            <div
+              class="flex items-center justify-around lg:justify-between h-16"
+            >
               <div class="flex items-center">
-                <span class="text-blue-600 font-semibold mr-2">My Roster</span>
-                <button
-                  class="bg-blue-500 text-white px-4 py-2 rounded-md flex items-center space-x-2 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                <span class="text-blue-600 font-semibold mr-2 hidden lg:block"
+                  >My Roster</span
+                >
+                <div class="relative">
+                  <button
+                    id="dropdown-button"
+                    class="bg-blue-500 text-white p-2 lg:px-4 lg:py-2 rounded-md flex items-center space-x-2 hover:bg-blue-600"
+                  >
+                    <i class="fas fa-list-ul"></i>
+                    <span class="sr-only">Menu</span>
+                    <i class="fas fa-chevron-down hidden lg:block"></i>
+                  </button>
+
+                  <div
+                    id="dropdown"
+                    class="dropdown absolute left-1 z-10 mt-2 w-56 bg-white border border-gray-300 rounded-md shadow-lg"
+                  >
+                    <ul class="py-2">
+                      <li>
+                        <a
+                          href="#"
+                          class="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                          >Professionals</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          class="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                          >Beginners</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          class="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                          >Noobs</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- <button
+                  class="bg-blue-500 text-white p-2 lg:px-4 lg:py-2 rounded-md flex items-center space-x-2 hover:bg-blue-600"
                 >
                   <i class="fas fa-list-ul"></i>
                   <span class="sr-only">Menu</span>
-                  <i class="fas fa-chevron-down"></i>
-                </button>
+                  <i class="fas fa-chevron-down hidden lg:block"></i>
+                </button> -->
               </div>
-              <div class="flex-grow mx-1">
+              <div class="flex-grow mx-1 gap-x-2">
                 <div class="relative">
                   <input
                     type="text"
                     placeholder="Search by Member ID, Member Last Name, PCP Last Name, Group Name"
-                    class="w-full pl-3 pr-10 py-2 border-2 border-gray-200 focus:outline-none focus:border-blue-500 transition-colors"
+                    class="w-full pl-3 pr-10 py-2 border-2 border-gray-200 focus:outline-none focus:border-blue-500 transition-colors rounded-md lg:rounded-none"
                   />
                   <button
                     class="absolute right-2 top-2 text-gray-400 hover:text-blue-500 focus:outline-none"
@@ -186,7 +314,9 @@
                   </button>
                 </div>
               </div>
-              <div class="w-1/3 flex justify-around items-center space-x-2">
+              <div
+                class="w-1/3 lg:flex justify-around items-center space-x-2 hidden"
+              >
                 <button class="text-blue-600 focus:outline-none">
                   <i class="fas fa-sync-alt text-3xl"></i>
                 </button>
@@ -218,17 +348,69 @@
                   <span class="text-[#0082ca] font-medium"> All </span>
                 </div>
                 <button class="text-gray-600 focus:outline-none">
-                  <i class="fas fa-filter"></i>
+                  <i id="filter-button" class="fas fa-filter"></i>
                 </button>
                 <button class="text-gray-600 focus:outline-none">
                   <i class="fas fa-ellipsis-v"></i>
                 </button>
               </div>
+              <div class="relative inline-block">
+                <button
+                  id="filter-button"
+                  class="flex items-center justify-between gap-x-2 lg:hidden bg-blue-500 p-2 rounded-md text-white hover:bg-blue-600 transition h-full w-full"
+                >
+                  <p>Filter</p>
+                  <i class="fas fa-filter"></i>
+                </button>
+
+                <div
+                  id="filter-dropdown"
+                  class="dropdown absolute right-0 z-10 mt-2 w-56 bg-white border border-gray-300 rounded-md shadow-lg hidden transition-all duration-300 ease-in-out scale-95 origin-top"
+                >
+                  <ul class="py-2">
+                    <li>
+                      <a
+                        href="#"
+                        class="block px-4 py-2 text-gray-800 hover:bg-blue-100 transition"
+                        >Search by Code</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="block px-4 py-2 text-gray-800 hover:bg-blue-100 transition"
+                        >Search by First Name</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="block px-4 py-2 text-gray-800 hover:bg-blue-100 transition"
+                        >Search by Last Name</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="block px-4 py-2 text-gray-800 hover:bg-blue-100 transition"
+                        >Search by Category</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- <button
+                class="flex items-center justify-normal gap-x-2 lg:hidden bg-[#3b82f6] p-2 rounded-md text-white"
+              >
+                Filter
+                <i class="fas fa-filter" style="color: white"></i>
+              </button> -->
             </div>
           </div>
         </div>
         <div class="h-full w-[98%] mx-auto">
-          <div class="grid grid-cols-4 gap-5 h-40 w-full">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 w-full">
             <div
               class="col-span-1 h-full rounded-lg shadow-xl p-5 bg-gray-100 flex justify-center items-center relative"
             >
@@ -357,150 +539,428 @@
           </div>
         </div>
         <div class="w-full p-2 h-[52vh] overflow-x-auto">
-          <table class="min-w-full border-collapse">
+          <table class="w-full border-collapse">
             <thead class="border-b-4 border-blue-500">
               <tr class="bg-gray-100">
-                <th class="font-medium border-b border-gray-300 p-2">
-                  Title
-                  <span class="cursor-pointer text-[#0082ca]"
-                    ><i class="fa-solid fa-arrows-up-down"></i
-                  ></span>
-                </th>
-                <th class="font-medium border-b border-gray-300 p-2">
-                  Title
-                  <span class="cursor-pointer text-[#0082ca]"
-                    ><i class="fa-solid fa-arrows-up-down"></i
-                  ></span>
-                </th>
-                <th class="font-medium border-b border-gray-300 p-2">
-                  Title
-                  <span class="cursor-pointer text-[#0082ca]"
-                    ><i class="fa-solid fa-arrows-up-down"></i
-                  ></span>
-                </th>
-                <th class="font-medium border-b border-gray-300 p-2">
-                  Title
-                  <span class="cursor-pointer text-[#0082ca]"
-                    ><i class="fa-solid fa-arrows-up-down"></i
-                  ></span>
-                </th>
-                <th class="font-medium border-b border-gray-300 p-2">
-                  Title
-                  <span class="cursor-pointer text-[#0082ca]"
-                    ><i class="fa-solid fa-arrows-up-down"></i
-                  ></span>
-                </th>
-                <th class="font-medium border-b border-gray-300 p-2">
-                  Title
-                  <span class="cursor-pointer text-[#0082ca]"
-                    ><i class="fa-solid fa-arrows-up-down"></i
-                  ></span>
-                </th>
+                  <th class="font-medium border-b border-gray-300 p-2">
+                      Product Name
+                      <span class="cursor-pointer text-[#0082ca]">
+                          <i class="fa-solid fa-arrows-up-down"></i>
+                      </span>
+                  </th>
+                  <th class="font-medium border-b border-gray-300 p-2">
+                      Quantity
+                      <span class="cursor-pointer text-[#0082ca]">
+                          <i class="fa-solid fa-arrows-up-down"></i>
+                      </span>
+                  </th>
+                  <th class="font-medium border-b border-gray-300 p-2">
+                      Price
+                      <span class="cursor-pointer text-[#0082ca]">
+                          <i class="fa-solid fa-arrows-up-down"></i>
+                      </span>
+                  </th>
+                  <th class="font-medium border-b border-gray-300 p-2">
+                      Category
+                      <span class="cursor-pointer text-[#0082ca]">
+                          <i class="fa-solid fa-arrows-up-down"></i>
+                      </span>
+                  </th>
+                  <th class="font-medium border-b border-gray-300 p-2">
+                      Supplier
+                      <span class="cursor-pointer text-[#0082ca]">
+                          <i class="fa-solid fa-arrows-up-down"></i>
+                      </span>
+                  </th>
+                  <th class="font-medium border-b border-gray-300 p-2">
+                      Status
+                      <span class="cursor-pointer text-[#0082ca]">
+                          <i class="fa-solid fa-arrows-up-down"></i>
+                      </span>
+                  </th>
               </tr>
-            </thead>
-            <tbody class="">
-              <tr class="bg-white rounded-lg border-b-8 border-gray-200">
-                <td class="text-center p-2">123456</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-              </tr>
-              <tr
-                class="bg-white border-t-8 rounded-lg border-b-8 border-gray-200"
-              >
-                <td class="text-center p-2">123456</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-              </tr>
-              <tr
-                class="bg-white border-t-8 rounded-lg border-b-8 border-gray-200"
-              >
-                <td class="text-center p-2">123456</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-              </tr>
-              <tr
-                class="bg-white border-t-8 rounded-lg border-b-8 border-gray-200"
-              >
-                <td class="text-center p-2">123456</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-              </tr>
-              <tr
-                class="bg-white border-t-8 rounded-lg border-b-8 border-gray-200"
-              >
-                <td class="text-center p-2">123456</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-              </tr>
-              <tr
-                class="bg-white border-t-8 rounded-lg border-b-8 border-gray-200"
-              >
-                <td class="text-center p-2">123456</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-              </tr>
-              <tr
-                class="bg-white border-t-8 rounded-lg border-b-8 border-gray-200"
-              >
-                <td class="text-center p-2">123456</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-              </tr>
-              <tr
-                class="bg-white border-t-8 rounded-lg border-b-8 border-gray-200"
-              >
-                <td class="text-center p-2">123456</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-              </tr>
-              <tr
-                class="bg-white border-t-8 rounded-lg border-b-8 border-gray-200"
-              >
-                <td class="text-center p-2">123456</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-              </tr>
-              <tr
-                class="bg-white border-t-8 rounded-lg border-b-8 border-gray-200"
-              >
-                <td class="text-center p-2">123456</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-                <td class="text-center p-2">Dummy Data</td>
-              </tr>
-            </tbody>
+          </thead>
+          <tbody id="data-table-body" class="text-center">
+            <!-- Data rows will be populated here -->
+        </tbody>
           </table>
         </div>
       </div>
     </div>
   </body>
+  <script>
+    // Select elements
+    const menuToggle = document.getElementById("menu-toggle");
+    const sidebar = document.getElementById("sidebar");
+    const closeSidebar = document.getElementById("close-sidebar");
+
+    // Toggle sidebar visibility
+    menuToggle.onclick = function () {
+      sidebar.classList.toggle("show");
+    };
+
+    // Close sidebar
+    closeSidebar.onclick = function () {
+      sidebar.classList.remove("show");
+    };
+
+    // Close sidebar on clicking outside
+    sidebar.onclick = function (event) {
+      if (event.target === sidebar) {
+        sidebar.classList.remove("show");
+      }
+    };
+    const dropdownButton = document.getElementById("dropdown-button");
+    const dropdown = document.getElementById("dropdown");
+
+    dropdownButton.onclick = function () {
+      dropdown.classList.toggle("show");
+    };
+
+    // Close dropdown when clicking outside
+    window.onclick = function (event) {
+      if (!event.target.matches("#dropdown-button")) {
+        dropdown.classList.remove("show");
+      }
+    };
+    const filterButton = document.getElementById("filter-button");
+    const filterDropdown = document.getElementById("filter-dropdown");
+
+    filterButton.onclick = function () {
+      filterDropdown.classList.toggle("hidden");
+      filterDropdown.classList.toggle("show");
+    };
+
+    // Close dropdown when clicking outside
+    window.onclick = function (event) {
+      if (
+        !event.target.matches("#filter-button") &&
+        !event.target.closest("#filter-dropdown")
+      ) {
+        filterDropdown.classList.add("hidden");
+        filterDropdown.classList.remove("show");
+      }
+    };
+    const jsonData = [
+            {
+                "productName": "Apple",
+                "quantity": 50,
+                "price": "$1.00",
+                "category": "Fruits",
+                "supplier": "Fruit Supplier Co.",
+                "status": "Available"
+            },
+            {
+                "productName": "Orange",
+                "quantity": 30,
+                "price": "$0.80",
+                "category": "Fruits",
+                "supplier": "Citrus Suppliers",
+                "status": "Available"
+            },
+            {
+                "productName": "Laptop",
+                "quantity": 10,
+                "price": "$999.99",
+                "category": "Electronics",
+                "supplier": "Tech Corp",
+                "status": "Out of Stock"
+            },
+            {
+                "productName": "Shampoo",
+                "quantity": 100,
+                "price": "$5.50",
+                "category": "Personal Care",
+                "supplier": "Care Products Inc.",
+                "status": "Available"
+            },
+            {
+                "productName": "Notebook",
+                "quantity": 200,
+                "price": "$2.50",
+                "category": "Stationery",
+                "supplier": "Office Supplies Ltd.",
+                "status": "Available"
+            },
+            {
+                "productName": "Laptop",
+                "quantity": 10,
+                "price": "$999.99",
+                "category": "Electronics",
+                "supplier": "Tech Corp",
+                "status": "Out of Stock"
+            },
+            {
+                "productName": "Shampoo",
+                "quantity": 100,
+                "price": "$5.50",
+                "category": "Personal Care",
+                "supplier": "Care Products Inc.",
+                "status": "Available"
+            },
+            {
+                "productName": "Notebook",
+                "quantity": 200,
+                "price": "$2.50",
+                "category": "Stationery",
+                "supplier": "Office Supplies Ltd.",
+                "status": "Available"
+            },
+            {
+                "productName": "Laptop",
+                "quantity": 10,
+                "price": "$999.99",
+                "category": "Electronics",
+                "supplier": "Tech Corp",
+                "status": "Out of Stock"
+            },
+            {
+                "productName": "Shampoo",
+                "quantity": 100,
+                "price": "$5.50",
+                "category": "Personal Care",
+                "supplier": "Care Products Inc.",
+                "status": "Available"
+            },
+            {
+                "productName": "Notebook",
+                "quantity": 200,
+                "price": "$2.50",
+                "category": "Stationery",
+                "supplier": "Office Supplies Ltd.",
+                "status": "Available"
+            },
+            {
+                "productName": "Laptop",
+                "quantity": 10,
+                "price": "$999.99",
+                "category": "Electronics",
+                "supplier": "Tech Corp",
+                "status": "Out of Stock"
+            },
+            {
+                "productName": "Shampoo",
+                "quantity": 100,
+                "price": "$5.50",
+                "category": "Personal Care",
+                "supplier": "Care Products Inc.",
+                "status": "Available"
+            },
+            {
+                "productName": "Notebook",
+                "quantity": 200,
+                "price": "$2.50",
+                "category": "Stationery",
+                "supplier": "Office Supplies Ltd.",
+                "status": "Available"
+            },
+            {
+                "productName": "Laptop",
+                "quantity": 10,
+                "price": "$999.99",
+                "category": "Electronics",
+                "supplier": "Tech Corp",
+                "status": "Out of Stock"
+            },
+            {
+                "productName": "Shampoo",
+                "quantity": 100,
+                "price": "$5.50",
+                "category": "Personal Care",
+                "supplier": "Care Products Inc.",
+                "status": "Available"
+            },
+            {
+                "productName": "Notebook",
+                "quantity": 200,
+                "price": "$2.50",
+                "category": "Stationery",
+                "supplier": "Office Supplies Ltd.",
+                "status": "Available"
+            },
+            {
+                "productName": "Laptop",
+                "quantity": 10,
+                "price": "$999.99",
+                "category": "Electronics",
+                "supplier": "Tech Corp",
+                "status": "Out of Stock"
+            },
+            {
+                "productName": "Shampoo",
+                "quantity": 100,
+                "price": "$5.50",
+                "category": "Personal Care",
+                "supplier": "Care Products Inc.",
+                "status": "Available"
+            },
+            {
+                "productName": "Notebook",
+                "quantity": 200,
+                "price": "$2.50",
+                "category": "Stationery",
+                "supplier": "Office Supplies Ltd.",
+                "status": "Available"
+            },
+            {
+                "productName": "Laptop",
+                "quantity": 10,
+                "price": "$999.99",
+                "category": "Electronics",
+                "supplier": "Tech Corp",
+                "status": "Out of Stock"
+            },
+            {
+                "productName": "Shampoo",
+                "quantity": 100,
+                "price": "$5.50",
+                "category": "Personal Care",
+                "supplier": "Care Products Inc.",
+                "status": "Available"
+            },
+            {
+                "productName": "Notebook",
+                "quantity": 200,
+                "price": "$2.50",
+                "category": "Stationery",
+                "supplier": "Office Supplies Ltd.",
+                "status": "Available"
+            },
+            {
+                "productName": "Laptop",
+                "quantity": 10,
+                "price": "$999.99",
+                "category": "Electronics",
+                "supplier": "Tech Corp",
+                "status": "Out of Stock"
+            },
+            {
+                "productName": "Shampoo",
+                "quantity": 100,
+                "price": "$5.50",
+                "category": "Personal Care",
+                "supplier": "Care Products Inc.",
+                "status": "Available"
+            },
+            {
+                "productName": "Notebook",
+                "quantity": 200,
+                "price": "$2.50",
+                "category": "Stationery",
+                "supplier": "Office Supplies Ltd.",
+                "status": "Available"
+            },
+            {
+                "productName": "Laptop",
+                "quantity": 10,
+                "price": "$999.99",
+                "category": "Electronics",
+                "supplier": "Tech Corp",
+                "status": "Out of Stock"
+            },
+            {
+                "productName": "Shampoo",
+                "quantity": 100,
+                "price": "$5.50",
+                "category": "Personal Care",
+                "supplier": "Care Products Inc.",
+                "status": "Available"
+            },
+            {
+                "productName": "Notebook",
+                "quantity": 200,
+                "price": "$2.50",
+                "category": "Stationery",
+                "supplier": "Office Supplies Ltd.",
+                "status": "Available"
+            },
+            {
+                "productName": "Laptop",
+                "quantity": 10,
+                "price": "$999.99",
+                "category": "Electronics",
+                "supplier": "Tech Corp",
+                "status": "Out of Stock"
+            },
+            {
+                "productName": "Shampoo",
+                "quantity": 100,
+                "price": "$5.50",
+                "category": "Personal Care",
+                "supplier": "Care Products Inc.",
+                "status": "Available"
+            },
+            {
+                "productName": "Notebook",
+                "quantity": 200,
+                "price": "$2.50",
+                "category": "Stationery",
+                "supplier": "Office Supplies Ltd.",
+                "status": "Available"
+            },
+            {
+                "productName": "Laptop",
+                "quantity": 10,
+                "price": "$999.99",
+                "category": "Electronics",
+                "supplier": "Tech Corp",
+                "status": "Out of Stock"
+            },
+            {
+                "productName": "Shampoo",
+                "quantity": 100,
+                "price": "$5.50",
+                "category": "Personal Care",
+                "supplier": "Care Products Inc.",
+                "status": "Available"
+            },
+            {
+                "productName": "Notebook",
+                "quantity": 200,
+                "price": "$2.50",
+                "category": "Stationery",
+                "supplier": "Office Supplies Ltd.",
+                "status": "Available"
+            },
+            {
+                "productName": "Laptop",
+                "quantity": 10,
+                "price": "$999.99",
+                "category": "Electronics",
+                "supplier": "Tech Corp",
+                "status": "Out of Stock"
+            },
+            {
+                "productName": "Shampoo",
+                "quantity": 100,
+                "price": "$5.50",
+                "category": "Personal Care",
+                "supplier": "Care Products Inc.",
+                "status": "Available"
+            },
+            {
+                "productName": "Notebook",
+                "quantity": 200,
+                "price": "$2.50",
+                "category": "Stationery",
+                "supplier": "Office Supplies Ltd.",
+                "status": "Available"
+            },
+        ];
+
+        const tableBody = document.getElementById('data-table-body');
+
+        jsonData.forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="border-b border-gray-300 p-2">${item.productName}</td>
+                <td class="border-b border-gray-300 p-2">${item.quantity}</td>
+                <td class="border-b border-gray-300 p-2">${item.price}</td>
+                <td class="border-b border-gray-300 p-2">${item.category}</td>
+                <td class="border-b border-gray-300 p-2">${item.supplier}</td>
+                <td class="border-b border-gray-300 p-2">${item.status}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+  </script>
 </html>
