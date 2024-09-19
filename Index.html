@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    .sidebar {
+      background-image: linear-gradient(to top, #30cfd0 0%, #0c5688 100%);
+    }
+    .overflow-x-auto::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    .overflow-x-auto::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .overflow-x-auto::-webkit-scrollbar-thumb {
+      background: linear-gradient(to top, #30cfd0 0%, #0c5688 100%);
+      border-radius: 10px;
+    }
+
+    .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(to top, #0c5688 0%, #30cfd0 100%);
+    }
+
+    .overflow-x-auto {
+      scrollbar-width: thin;
+      scrollbar-color: #30cfd0 transparent;
+    }
+  </style>
+  <body>
+    <!-- Header Start -->
+    <div
+      class="h-24 w-full border border-gray-200 flex items-center justify-normal"
+    >
+      <div
+        class="w-1/5 text-3xl h-full flex justify-center items-center border border-gray-200 border-l-0 border-b-0 border-t-0 border-r-gray-200"
+      >
+        LOGO
+      </div>
+      <div class="h-full w-full flex items-center justify-between px-5">
+        <div class="bg-white flex items-center space-x-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-12 w-12 text-blue-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+            />
+          </svg>
+          <div>
+            <h1 class="text-2xl font-semibold text-blue-500">Dummy Data</h1>
+            <p class="text-gray-500 text-sm">Dummy Data | Dummy Data</p>
+          </div>
+        </div>
+        <div class="flex justify-between gap-x-24">
+          <div class="flex items-center gap-x-16">
+            <i class="fas fa-users text-blue-500 text-2xl mr-4"></i>
+            <i class="fas fa-bell text-yellow-500 text-2xl mr-4"></i>
+            <i class="fas fa-user text-gray-500 text-2xl"></i>
+          </div>
+          <div class="flex items-center">
+            <div class="ml-3 relative">
+              <div>
+                <button
+                  type="button"
+                  class="flex items-center text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
+                  id="user-menu"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                >
+                  <span class="mr-2">Dummy Data</span>
+                  <svg
+                    class="h-5 w-5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Sidebar Start -->
+    <div class="flex justify-normal items-start gap-0">
+      <div
+        class="h-[calc(100vh-96px)] w-20 sidebar text-white flex flex-col items-center py-4"
+      >
+        <!-- Home Icon -->
+        <a href="#" class="mb-6 hover:text-gray-400">
+          <i class="fa-solid fa-bell text-2xl"></i>
+        </a>
+
+        <div class="flex flex-col bg-[#037aad] w-full items-center py-3 mb-2">
+          <a
+            href="#"
+            class="mb-6 bg-green-500 rounded-full p-3 hover:translate-x-5 transition hover:bg-green-400"
+          >
+            <i class="fa-solid fa-users text-3xl"></i>
+          </a>
+
+          <a href="#" class="mb-6 hover:text-gray-400">
+            <i class="fa-solid fa-user-doctor text-2xl"></i>
+          </a>
+
+          <a href="#" class="mb-6 hover:text-gray-400">
+            <i class="fa-duotone fa-solid fa-user-plus text-2xl"></i>
+          </a>
+        </div>
+        <a href="#" class="mb-6 hover:text-gray-400">
+          <i class="fa-solid fa-wrench text-2xl"></i>
+        </a>
+        <a href="#" class="mb-6 hover:text-gray-400">
+          <i class="fa-solid fa-chart-pie text-2xl"></i>
+        </a>
+        <a href="#" class="mb-6 hover:text-gray-400">
+          <i class="fa-solid fa-hands text-2xl"></i>
+        </a>
+        <a href="#" class="hover:text-gray-400">
+          <i class="fa-solid fa-paperclip text-2xl"></i>
+        </a>
+
+        <div class="absolute bottom-4">
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
+      </div>
+      <div class="h-full w-full space-y-4">
+        <div
+          class="h-5 w-full bg-[#adaeb3] flex items-center gap-x-5 px-10 py-3 border-gray-700"
+        >
+          <p class="text-sm text-white">Dashboard</p>
+          <i class="fa-solid fa-arrow-right" style="color: white"></i>
+          <p class="text-sm text-white">My Roster</p>
+        </div>
+        <div class="bg-[#e6e6e6] w-[98%] mx-auto">
+          <div class="px-2 sm:px-4 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+              <div class="flex items-center">
+                <span class="text-blue-600 font-semibold mr-2">My Roster</span>
+                <button
+                  class="bg-blue-500 text-white px-4 py-2 rounded-md flex items-center space-x-2 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                >
+                  <i class="fas fa-list-ul"></i>
+                  <span class="sr-only">Menu</span>
+                  <i class="fas fa-chevron-down"></i>
+                </button>
+              </div>
+              <div class="flex-grow mx-1">
+                <div class="relative">
+                  <input
+                    type="text"
+                    placeholder="Search by Member ID, Member Last Name, PCP Last Name, Group Name"
+                    class="w-full pl-3 pr-10 py-2 border-2 border-gray-200 focus:outline-none focus:border-blue-500 transition-colors"
+                  />
+                  <button
+                    class="absolute right-2 top-2 text-gray-400 hover:text-blue-500 focus:outline-none"
+                  >
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="w-1/3 flex justify-around items-center space-x-2">
+                <button class="text-blue-600 focus:outline-none">
+                  <i class="fas fa-sync-alt text-3xl"></i>
+                </button>
+                <div
+                  class="flex items-center justify-center gap-x-3 text-[#0082ca]"
+                >
+                  <input type="checkbox" name="" id="" />
+                  <span>Filter</span>
+                </div>
+
+                <div
+                  class="flex items-center justify-center gap-x-3 text-[#0082ca]"
+                >
+                  <input type="checkbox" name="" id="" />
+                  <span>Filter</span>
+                </div>
+                <div
+                  class="flex items-center justify-center gap-x-3 text-[#0082ca]"
+                >
+                  <input type="checkbox" name="" id="" />
+                  <span>Filter</span>
+                </div>
+                <div class="flex items-center justify-between gap-x-2">
+                  <div
+                    class="w-6 h-6 rounded-full border border-[#66bb6a] flex items-center justify-center"
+                  >
+                    <div class="bg-[#66bb6a] w-3 h-3 rounded-full"></div>
+                  </div>
+                  <span class="text-[#0082ca] font-medium"> All </span>
+                </div>
+                <button class="text-gray-600 focus:outline-none">
+                  <i class="fas fa-filter"></i>
+                </button>
+                <button class="text-gray-600 focus:outline-none">
+                  <i class="fas fa-ellipsis-v"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="h-full w-[98%] mx-auto">
+          <div class="grid grid-cols-4 gap-5 h-40 w-full">
+            <div
+              class="col-span-1 h-full rounded-lg shadow-xl p-5 bg-gray-100 flex justify-center items-center relative"
+            >
+              <p
+                class="text-sm text-[#0082ca] font-semibold absolute top-5 left-5"
+              >
+                Title
+              </p>
+              <div class="font-semibold text-7xl text-[#0082ca]">1288</div>
+            </div>
+            <div
+              class="col-span-1 h-full rounded-lg shadow-xl p-5 bg-gray-100 flex justify-center items-center relative"
+            >
+              <p
+                class="text-sm text-[#0082ca] font-semibold absolute top-5 left-5"
+              >
+                Title
+              </p>
+              <div class="flex items-center justify-center">
+                <div class="">
+                  <div class="relative">
+                    <svg class="w-52" viewBox="0 0 100 50">
+                      <path
+                        d="M5 50a45 45 0 0 1 90 0"
+                        fill="none"
+                        stroke="#e0e0e0"
+                        stroke-width="10"
+                      />
+                      <path
+                        d="M5 50a45 45 0 0 1 15-33.7"
+                        fill="none"
+                        stroke="#3b82f6"
+                        stroke-width="10"
+                      />
+                      <path
+                        d="M20 16.3a45 45 0 0 1 15-8.7"
+                        fill="none"
+                        stroke="#22d3ee"
+                        stroke-width="10"
+                      />
+                      <path
+                        d="M35 7.6a45 45 0 0 1 15-2.6"
+                        fill="none"
+                        stroke="#4ade80"
+                        stroke-width="10"
+                      />
+                      <path
+                        d="M50 5a45 45 0 0 1 15 2.6"
+                        fill="none"
+                        stroke="#facc15"
+                        stroke-width="10"
+                      />
+                      <path
+                        d="M65 7.6a45 45 0 0 1 15 8.7"
+                        fill="none"
+                        stroke="#fb923c"
+                        stroke-width="10"
+                      />
+                      <path
+                        d="M80 16.3a45 45 0 0 1 15 33.7"
+                        fill="none"
+                        stroke="#f87171"
+                        stroke-width="10"
+                      />
+                    </svg>
+                    <div class="absolute inset-0 flex items-end justify-center">
+                      <span class="text-4xl font-semibold text-blue-500"
+                        >6</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-span-1 h-full rounded-lg shadow-xl p-5 bg-gray-100 flex justify-center items-center relative"
+            >
+              <p
+                class="text-sm text-[#0082ca] font-semibold absolute top-5 left-5"
+              >
+                Title
+              </p>
+              <div class="h-24 w-3/4 mx-auto grid grid-cols-5 gap-3">
+                <div
+                  class="col-span-1 bg-[#e4e8eb] flex flex-col justify-end items-center gap-0 rounded-md"
+                >
+                  <p class="text-[#0082ca] font-semibold text-2xl">193</p>
+                  <div class="h-1/4 bg-[#a1a1a1] w-full rounded-md"></div>
+                </div>
+                <div
+                  class="col-span-1 bg-[#e4e8eb] flex flex-col justify-end items-center gap-0 rounded-md"
+                >
+                  <p class="text-[#0082ca] font-semibold text-2xl">254</p>
+                  <div class="h-1/2 bg-[#ecd13d] w-full rounded-md"></div>
+                </div>
+                <div
+                  class="col-span-1 bg-[#e4e8eb] flex flex-col justify-end items-center gap-0 rounded-md"
+                >
+                  <p class="text-[#0082ca] font-semibold text-2xl">201</p>
+                  <div class="h-2/5 bg-[#c0c0c0] w-full rounded-md"></div>
+                </div>
+                <div
+                  class="col-span-1 bg-[#e4e8eb] flex flex-col justify-end items-center gap-0 rounded-md"
+                >
+                  <p class="text-[#0082ca] font-semibold text-2xl">157</p>
+                  <div class="h-1/5 bg-[#b19447] w-full rounded-md"></div>
+                </div>
+                <div
+                  class="col-span-1 bg-[#e4e8eb] flex flex-col justify-end items-center gap-0 rounded-md"
+                >
+                  <p class="text-[#0082ca] font-semibold text-2xl">483</p>
+                  <div class="h-4/5 bg-[#0091cc] w-full rounded-md"></div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-span-1 h-full rounded-lg shadow-xl p-5 bg-gray-100 flex justify-center items-center relative"
+            >
+              <p
+                class="text-sm text-[#0082ca] font-semibold absolute top-5 left-5"
+              >
+                Title
+              </p>
+              <div class="font-semibold text-7xl text-[#0082ca]">28</div>
+            </div>
+          </div>
+        </div>
+        <div class="w-full p-2 h-[52vh] overflow-x-auto">
+          <table class="min-w-full border-collapse">
+            <thead class="border-b-4 border-blue-500">
+              <tr class="bg-gray-100">
+                <th class="font-medium border-b border-gray-300 p-2">
+                  Title
+                  <span class="cursor-pointer text-[#0082ca]"
+                    ><i class="fa-solid fa-arrows-up-down"></i
+                  ></span>
+                </th>
+                <th class="font-medium border-b border-gray-300 p-2">
+                  Title
+                  <span class="cursor-pointer text-[#0082ca]"
+                    ><i class="fa-solid fa-arrows-up-down"></i
+                  ></span>
+                </th>
+                <th class="font-medium border-b border-gray-300 p-2">
+                  Title
+                  <span class="cursor-pointer text-[#0082ca]"
+                    ><i class="fa-solid fa-arrows-up-down"></i
+                  ></span>
+                </th>
+                <th class="font-medium border-b border-gray-300 p-2">
+                  Title
+                  <span class="cursor-pointer text-[#0082ca]"
+                    ><i class="fa-solid fa-arrows-up-down"></i
+                  ></span>
+                </th>
+                <th class="font-medium border-b border-gray-300 p-2">
+                  Title
+                  <span class="cursor-pointer text-[#0082ca]"
+                    ><i class="fa-solid fa-arrows-up-down"></i
+                  ></span>
+                </th>
+                <th class="font-medium border-b border-gray-300 p-2">
+                  Title
+                  <span class="cursor-pointer text-[#0082ca]"
+                    ><i class="fa-solid fa-arrows-up-down"></i
+                  ></span>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="">
+              <tr class="bg-white rounded-lg border-b-8 border-gray-200">
+                <td class="text-center p-2">123456</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+              </tr>
+              <tr
+                class="bg-white border-t-8 rounded-lg border-b-8 border-gray-200"
+              >
+                <td class="text-center p-2">123456</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+              </tr>
+              <tr
+                class="bg-white border-t-8 rounded-lg border-b-8 border-gray-200"
+              >
+                <td class="text-center p-2">123456</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+              </tr>
+              <tr
+                class="bg-white border-t-8 rounded-lg border-b-8 border-gray-200"
+              >
+                <td class="text-center p-2">123456</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+              </tr>
+              <tr
+                class="bg-white border-t-8 rounded-lg border-b-8 border-gray-200"
+              >
+                <td class="text-center p-2">123456</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+              </tr>
+              <tr
+                class="bg-white border-t-8 rounded-lg border-b-8 border-gray-200"
+              >
+                <td class="text-center p-2">123456</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+              </tr>
+              <tr
+                class="bg-white border-t-8 rounded-lg border-b-8 border-gray-200"
+              >
+                <td class="text-center p-2">123456</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+              </tr>
+              <tr
+                class="bg-white border-t-8 rounded-lg border-b-8 border-gray-200"
+              >
+                <td class="text-center p-2">123456</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+              </tr>
+              <tr
+                class="bg-white border-t-8 rounded-lg border-b-8 border-gray-200"
+              >
+                <td class="text-center p-2">123456</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+              </tr>
+              <tr
+                class="bg-white border-t-8 rounded-lg border-b-8 border-gray-200"
+              >
+                <td class="text-center p-2">123456</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+                <td class="text-center p-2">Dummy Data</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
