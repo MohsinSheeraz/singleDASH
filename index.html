@@ -444,9 +444,30 @@
                 <button class="text-gray-600 focus:outline-none">
                   <i id="filter-button" class="fas fa-filter"></i>
                 </button>
-                <button class="text-gray-600 focus:outline-none">
-                  <i class="fas fa-ellipsis-v"></i>
-                </button>
+                <div class="relative">
+                  <button
+                    id="open-drawer-button-complex-id"
+                    class="text-gray-600 focus:outline-none"
+                  >
+                    <i class="fas fa-ellipsis-v"></i>
+                  </button>
+
+                  <div
+                    id="drawer-container-complex-id"
+                    class="z-20 fixed bottom-0 right-0 w-96 h-2/3 bg-white shadow-lg transform translate-y-full transition-transform duration-300 ease-in-out"
+                  >
+                    <div class="p-5 overflow-y-auto h-full">
+                      <h2 class="text-xl font-bold">Drawer Content</h2>
+                      <p>Your content goes here...</p>
+                      <button
+                        id="close-drawer-button-complex-id"
+                        class="mt-4 bg-blue-500 text-white p-2 rounded"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="relative inline-block">
                 <button
@@ -1240,5 +1261,31 @@
     closeSidebarButton.addEventListener("click", function () {
       sidebarContainer.classList.add("-translate-x-full"); // Slide out
     });
+    const openDrawerButton = document.getElementById(
+      "open-drawer-button-complex-id"
+    );
+    const drawerContainer = document.getElementById(
+      "drawer-container-complex-id"
+    );
+    const closeDrawerButton = document.getElementById(
+      "close-drawer-button-complex-id"
+    );
+
+    openDrawerButton.onclick = function () {
+      drawerContainer.classList.remove("translate-y-full");
+      drawerContainer.classList.add("translate-y-0");
+    };
+
+    closeDrawerButton.onclick = function () {
+      drawerContainer.classList.add("translate-y-full");
+      drawerContainer.classList.remove("translate-y-0");
+    };
+
+    // Optional: Close drawer when clicking outside
+    window.onclick = function (event) {
+      if (event.target === drawerContainer) {
+        closeDrawerButton.click();
+      }
+    };
   </script>
 </html>
