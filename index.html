@@ -444,83 +444,32 @@
                 <button class="text-gray-600 focus:outline-none">
                   <i id="filter-button" class="fas fa-filter"></i>
                 </button>
-                <div class="relative">
-                  <button
-                    id="open-drawer-button-complex-id"
-                    class="text-gray-600 focus:outline-none"
-                  >
-                    <i class="fas fa-ellipsis-v"></i>
-                  </button>
-
-                  <div
-                    id="drawer-container-complex-id"
-                    class="z-20 fixed bottom-0 right-0 w-96 h-2/3 bg-white shadow-lg transform translate-y-full transition-transform duration-300 ease-in-out"
-                  >
-                    <div class="p-5 overflow-y-auto h-full">
-                      <h2 class="text-xl font-bold">Drawer Content</h2>
-                      <p>Your content goes here...</p>
-                      <button
-                        id="close-drawer-button-complex-id"
-                        class="mt-4 bg-blue-500 text-white p-2 rounded"
-                      >
-                        Close
-                      </button>
-                    </div>
-                  </div>
-                </div>
               </div>
-              <div class="relative inline-block">
+              <div class="relative">
                 <button
-                  id="filter-button"
-                  class="flex items-center justify-between gap-x-2 lg:hidden bg-blue-500 p-2 rounded-md text-white hover:bg-blue-600 transition h-full w-full"
+                  id="open-drawer-button-complex-id"
+                  class="text-gray-600 focus:outline-none"
                 >
-                  <p>Filter</p>
-                  <i class="fas fa-filter"></i>
+                  <i class="fas fa-ellipsis-v"></i>
                 </button>
 
                 <div
-                  id="filter-dropdown"
-                  class="dropdown absolute right-0 z-10 mt-2 w-56 bg-white border border-gray-300 rounded-md shadow-lg hidden transition-all duration-300 ease-in-out scale-95 origin-top"
+                  id="drawer-container-complex-id"
+                  class="rounded-t-lg z-20 fixed bottom-20 right-0 h-2/3 w-2/3 bg-white shadow-lg transform translate-y-full transition-transform duration-300 ease-in-out flex flex-col justify-between items-center p-5 px-3"
                 >
-                  <ul class="py-2">
-                    <li>
-                      <a
-                        href="#"
-                        class="block px-4 py-2 text-gray-800 hover:bg-blue-100 transition"
-                        >Search by Code</a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        class="block px-4 py-2 text-gray-800 hover:bg-blue-100 transition"
-                        >Search by First Name</a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        class="block px-4 py-2 text-gray-800 hover:bg-blue-100 transition"
-                        >Search by Last Name</a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        class="block px-4 py-2 text-gray-800 hover:bg-blue-100 transition"
-                        >Search by Category</a
-                      >
-                    </li>
-                  </ul>
+                  <div class="p-5 overflow-y-auto h-full">
+                    <h2 class="text-xl font-bold">Drawer Content</h2>
+                    <p>Your content goes here...</p>
+                  </div>
+                  <button
+                  id="close-drawer-button-complex-id"
+                  class="bg-blue-500 text-white p-2 rounded w-full mx-4"
+                >
+                  Close
+                </button>
                 </div>
               </div>
-
-              <!-- <button
-                class="flex items-center justify-normal gap-x-2 lg:hidden bg-[#3b82f6] p-2 rounded-md text-white"
-              >
-                Filter
-                <i class="fas fa-filter" style="color: white"></i>
-              </button> -->
+             
             </div>
           </div>
         </div>
