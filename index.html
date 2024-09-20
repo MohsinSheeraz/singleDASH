@@ -462,14 +462,13 @@
                     <p>Your content goes here...</p>
                   </div>
                   <button
-                  id="close-drawer-button-complex-id"
-                  class="bg-blue-500 text-white p-2 rounded w-full mx-4"
-                >
-                  Close
-                </button>
+                    id="close-drawer-button-complex-id"
+                    class="bg-blue-500 text-white p-2 rounded w-full mx-4"
+                  >
+                    Close
+                  </button>
                 </div>
               </div>
-             
             </div>
           </div>
         </div>
@@ -608,69 +607,65 @@
           <table class="w-full border-collapse">
             <thead class="border-b-4 border-blue-500">
               <tr class="bg-gray-100">
-                <th
-                  id="sort-product-name"
-                >
-                <div  class="flex items-center justify-center gap-x-2 font-medium flex-nowrap text-xs md:text-sm p-2">
-                  Product Name
-                  <span class="cursor-pointer text-[#0082ca]">
-                    <i class="fa-solid fa-arrows-up-down"></i>
-                  </span>
-                </div>
+                <th id="sort-product-name">
+                  <div
+                    class="flex items-center justify-center gap-x-2 font-medium flex-nowrap text-xs md:text-sm p-2"
+                  >
+                    Product Name
+                    <span class="cursor-pointer text-[#0082ca]">
+                      <i class="fa-solid fa-arrows-up-down"></i>
+                    </span>
+                  </div>
                 </th>
-                <th
-                  id="sort-quantity"
-                >
-                <div  class="flex items-center justify-center gap-x-2 font-medium flex-nowrap text-xs md:text-sm p-2">
-                  Quantity
-                  <span class="cursor-pointer text-[#0082ca]">
-                    <i class="fa-solid fa-arrows-up-down"></i>
-                  </span>
-                </div>
+                <th id="sort-quantity">
+                  <div
+                    class="flex items-center justify-center gap-x-2 font-medium flex-nowrap text-xs md:text-sm p-2"
+                  >
+                    Quantity
+                    <span class="cursor-pointer text-[#0082ca]">
+                      <i class="fa-solid fa-arrows-up-down"></i>
+                    </span>
+                  </div>
                 </th>
-                <th
-                  id="sort-price"
-                >
-                <div  class="flex items-center justify-center gap-x-2 font-medium flex-nowrap text-xs md:text-sm p-2">
-
-                  Price
-                  <span class="cursor-pointer text-[#0082ca]">
-                    <i class="fa-solid fa-arrows-up-down"></i>
-                  </span>
-                </div>
+                <th id="sort-price">
+                  <div
+                    class="flex items-center justify-center gap-x-2 font-medium flex-nowrap text-xs md:text-sm p-2"
+                  >
+                    Price
+                    <span class="cursor-pointer text-[#0082ca]">
+                      <i class="fa-solid fa-arrows-up-down"></i>
+                    </span>
+                  </div>
                 </th>
-                <th
-                  id="sort-category"
-                >
-                <div  class="flex items-center justify-center gap-x-2 font-medium flex-nowrap text-xs md:text-sm p-2">
-
-                  Category
-                  <span class="cursor-pointer text-[#0082ca]">
-                    <i class="fa-solid fa-arrows-up-down"></i>
-                  </span>
-                </div>
+                <th id="sort-category">
+                  <div
+                    class="flex items-center justify-center gap-x-2 font-medium flex-nowrap text-xs md:text-sm p-2"
+                  >
+                    Category
+                    <span class="cursor-pointer text-[#0082ca]">
+                      <i class="fa-solid fa-arrows-up-down"></i>
+                    </span>
+                  </div>
                 </th>
-                <th
-                  id="sort-supplier"
-                >
-                <div  class="flex items-center justify-center gap-x-2 font-medium flex-nowrap text-xs md:text-sm p-2">
-
-                  Supplier
-                  <span class="cursor-pointer text-[#0082ca]">
-                    <i class="fa-solid fa-arrows-up-down"></i>
-                  </span>
-                </div>
+                <th id="sort-supplier">
+                  <div
+                    class="flex items-center justify-center gap-x-2 font-medium flex-nowrap text-xs md:text-sm p-2"
+                  >
+                    Supplier
+                    <span class="cursor-pointer text-[#0082ca]">
+                      <i class="fa-solid fa-arrows-up-down"></i>
+                    </span>
+                  </div>
                 </th>
-                <th
-                  id="sort-status"
-                >
-                <div  class="flex items-center justify-center gap-x-2 font-medium flex-nowrap text-xs md:text-sm p-2">
-
-                  Status
-                  <span class="cursor-pointer text-[#0082ca]">
-                    <i class="fa-solid fa-arrows-up-down"></i>
-                  </span>
-                </div>
+                <th id="sort-status">
+                  <div
+                    class="flex items-center justify-center gap-x-2 font-medium flex-nowrap text-xs md:text-sm p-2"
+                  >
+                    Status
+                    <span class="cursor-pointer text-[#0082ca]">
+                      <i class="fa-solid fa-arrows-up-down"></i>
+                    </span>
+                  </div>
                 </th>
               </tr>
             </thead>
@@ -1138,20 +1133,26 @@
     function populateTable(data) {
       tableBody.innerHTML = ""; // Clear existing rows
       data.forEach((item) => {
+        // Create the row
         const row = document.createElement("tr");
+        row.classList.add("cursor-pointer"); // Add pointer cursor for visual feedback
+
+        // Add click event to the row
+        row.onclick = () => {
+          window.open(``, "_blank");
+        };
+
+        // Populate the row with cells
         row.innerHTML = `
-            <td class="border-b border-gray-300 p-2">
-                <a href="https://example.com/product/${item.productName}" target="_blank" class="text-blue-500 hover:underline">
-                    ${item.productName}
-                </a>
-            </td>
-            <td class="border-b border-gray-300 p-2">${item.quantity}</td>
-            <td class="border-b border-gray-300 p-2">${item.price}</td>
-            <td class="border-b border-gray-300 p-2">${item.category}</td>
-            <td class="border-b border-gray-300 p-2">${item.supplier}</td>
-            <td class="border-b border-gray-300 p-2">${item.status}</td>
-        `;
-        tableBody.appendChild(row);
+      <td class="border-b border-gray-300 p-2">${item.productName}</td>
+      <td class="border-b border-gray-300 p-2">${item.quantity}</td>
+      <td class="border-b border-gray-300 p-2">${item.price}</td>
+      <td class="border-b border-gray-300 p-2">${item.category}</td>
+      <td class="border-b border-gray-300 p-2">${item.supplier}</td>
+      <td class="border-b border-gray-300 p-2">${item.status}</td>
+    `;
+
+        tableBody.appendChild(row); // Append the row to the table body
       });
     }
 
