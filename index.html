@@ -65,22 +65,6 @@
       background: #dbeafe;
       cursor: pointer;
     }
-    .sidebar {
-      width: 80px; /* Default collapsed width */
-      transition: width 0.5s ease; /* Smooth transition */
-    }
-
-    .sidebar.expanded {
-      width: 13%; /* Expanded width */
-    }
-
-    .sidebar .text {
-      transition: opacity 0.5s ease; /* Optional: for smoother text appearance */
-    }
-    #sidebar-container-with-content {
-      transition: transform 0.3s ease;
-      background-image: linear-gradient(to top, #30cfd0 0%, #0c5688 100%);
-    }
   </style>
   <body>
     <!-- Header Start -->
@@ -382,13 +366,6 @@
                     </ul>
                   </div>
                 </div>
-                <!-- <button
-                  class="bg-blue-500 text-white p-2 lg:px-4 lg:py-2 rounded-md flex items-center space-x-2 hover:bg-blue-600"
-                >
-                  <i class="fas fa-list-ul"></i>
-                  <span class="sr-only">Menu</span>
-                  <i class="fas fa-chevron-down hidden lg:block"></i>
-                </button> -->
               </div>
               <div class="flex-grow mx-1 gap-x-2">
                 <div class="relative">
@@ -452,10 +429,10 @@
                 >
                   <i class="fas fa-ellipsis-v"></i>
                 </button>
-
+              
                 <div
                   id="drawer-container-complex-id"
-                  class="rounded-t-lg z-20 fixed bottom-5 lg:bottom-0 right-0 h-2/3 w-2/3 lg:w-96 bg-white shadow-lg transform translate-y-full transition-transform duration-300 ease-in-out flex flex-col justify-between items-center p-5 px-3"
+                  class="rounded-lg z-20 fixed top-0 right-0 h-full w-2/3 lg:w-96 bg-white shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between items-center p-5"
                 >
                   <div class="p-5 overflow-y-auto h-full">
                     <h2 class="text-xl font-bold">Drawer Content</h2>
@@ -469,6 +446,7 @@
                   </button>
                 </div>
               </div>
+              
             </div>
           </div>
         </div>
@@ -1221,31 +1199,26 @@
     closeSidebarButton.addEventListener("click", function () {
       sidebarContainer.classList.add("-translate-x-full"); // Slide out
     });
-    const openDrawerButton = document.getElementById(
-      "open-drawer-button-complex-id"
-    );
-    const drawerContainer = document.getElementById(
-      "drawer-container-complex-id"
-    );
-    const closeDrawerButton = document.getElementById(
-      "close-drawer-button-complex-id"
-    );
+    const openDrawerButton = document.getElementById("open-drawer-button-complex-id");
+const drawerContainer = document.getElementById("drawer-container-complex-id");
+const closeDrawerButton = document.getElementById("close-drawer-button-complex-id");
 
-    openDrawerButton.onclick = function () {
-      drawerContainer.classList.remove("translate-y-full");
-      drawerContainer.classList.add("translate-y-0");
-    };
+openDrawerButton.onclick = function () {
+  drawerContainer.classList.remove("translate-x-full");
+  drawerContainer.classList.add("translate-x-0");
+};
 
-    closeDrawerButton.onclick = function () {
-      drawerContainer.classList.add("translate-y-full");
-      drawerContainer.classList.remove("translate-y-0");
-    };
+closeDrawerButton.onclick = function () {
+  drawerContainer.classList.add("translate-x-full");
+  drawerContainer.classList.remove("translate-x-0");
+};
 
-    // Optional: Close drawer when clicking outside
-    window.onclick = function (event) {
-      if (event.target === drawerContainer) {
-        closeDrawerButton.click();
-      }
-    };
+// Optional: Close drawer when clicking outside
+window.onclick = function (event) {
+  if (event.target === drawerContainer) {
+    closeDrawerButton.click();
+  }
+};
+
   </script>
 </html>
